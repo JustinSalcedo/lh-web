@@ -1,0 +1,95 @@
+{
+    "dateStr": "2025-03-16",
+    "score": 0,
+    "tasks": [
+        {
+            "_id": "67d725d9f773a7d699473fc4",
+            "name": "Office",
+            "done": false,
+            "mandatory": false,
+            "subTasks": [
+                {
+                    "_id": "67d725d9f773a7d699473fc0",
+                    "name": "Floor",
+                    "done": false,
+                    "mandatory": false,
+                    "subTasks": [
+                        {
+                            "_id": "67d725d9f773a7d699473fb6",
+                            "name": "Sweep",
+                            "done": false,
+                            "score": 5,
+                            "mandatory": true,
+                            "reps": 3,
+                            "subTasks": [],
+                            "__v": 0
+                        },
+                        {
+                            "_id": "67d725d9f773a7d699473fb7",
+                            "name": "Mop",
+                            "done": false,
+                            "score": 5,
+                            "mandatory": false,
+                            "subTasks": [],
+                            "__v": 0
+                        }
+                    ],
+                    "__v": 0
+                },
+                {
+                    "_id": "67d725d9f773a7d699473fb8",
+                    "name": "table",
+                    "done": false,
+                    "score": 10,
+                    "mandatory": false,
+                    "subTasks": [],
+                    "__v": 0
+                },
+                {
+                    "_id": "67d725d9f773a7d699473fb9",
+                    "name": "desk",
+                    "done": false,
+                    "score": 5,
+                    "mandatory": false,
+                    "subTasks": [],
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "67d725d9f773a7d699473fc6",
+            "name": "Coffee station",
+            "done": false,
+            "mandatory": false,
+            "subTasks": [
+                {
+                    "_id": "67d725d9f773a7d699473fc2",
+                    "name": "drip machine",
+                    "done": false,
+                    "mandatory": true,
+                    "expandedFormat": "verb-noun",
+                    "subTasks": [
+                        {
+                            "_id": "67d725d9f773a7d699473fba",
+                            "name": "decalcify",
+                            "done": false,
+                            "score": 15,
+                            "mandatory": false,
+                            "subTasks": [],
+                            "__v": 0
+                        }
+                    ],
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        }
+    ],
+    "startTimeInMs": 1742112000000,
+    "endTimeInMs": 1742187600000,
+    "processed": false,
+    "user": "67d61914fcffb601752d7785",
+    "_id": "67d725d9f773a7d699473fc8",
+    "__v": 0
+}

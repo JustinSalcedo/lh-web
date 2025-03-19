@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import MainScreen from './screens/Main.screen'
+import './root'
+// import MasterListScreen from './screens/MasterList.screen'
+// import {parseItems} from './utils/item'
+
+// const rawList = `- *pet{Izzy, Honey}: 10(2)[noun]
+// - sweep: 15
+// - kitchen: [verb-noun]
+//     - *cook: 20
+//     - wash dishes: 10(2)`
+// console.log(rawList)
+
+// const item = parseItems(rawList)
+// console.log(item)
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <MainScreen />
+            {/* <MasterListScreen /> */}
+        </div>
+    )
 }
 
-export default App;
+export default App
