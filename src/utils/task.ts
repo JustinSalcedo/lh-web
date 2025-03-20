@@ -1,5 +1,5 @@
 import {runInAction} from 'mobx'
-import {ITask, IVisibleTask} from '../types/ITask'
+import {IRequiredTask, ITask, IVisibleTask} from '../types/ITask'
 
 // count tasks and subtasks recursively
 export const countTasks = (tasks: ITask[]): number => {
@@ -23,11 +23,34 @@ export const countCompletedTasks = (tasks: ITask[]): number => {
     return count
 }
 
+// count required tasks and subtasks recursively
+export const countRequiredTasks = (tasks: IRequiredTask[]): number => {
+    let count = 0
+    tasks.forEach(task => {
+        if (task.subTasks.length) {
+            count += countRequiredTasks(task.subTasks)
+        } else if (task.required) count++
+    })
+    return count
+}
+
+// count completed required tasks and subtasks recursively
+export const countCompletedRequiredTasks = (tasks: IRequiredTask[]): number => {
+    let count = 0
+    tasks.forEach(task => {
+        if (task.subTasks.length) {
+            count += countCompletedRequiredTasks(task.subTasks)
+        } else if (task.required && task.done) count++
+    })
+    return count
+}
+
 // set visible tasks by name recursively and mark them as visible and not visible
 export const setAndCountVisibleTasks = <T extends IVisibleTask>(
     tasks: T[],
     searchTerm: string,
     hideTasksDone: boolean,
+    hideNonRequiredTasks: boolean,
 ): number => {
     let count = 0
     tasks.forEach(task => {
@@ -37,11 +60,14 @@ export const setAndCountVisibleTasks = <T extends IVisibleTask>(
                 task.subTasks,
                 searchTerm,
                 hideTasksDone,
+                hideNonRequiredTasks,
             )
         }
 
         const visible =
-            ((!hideTasksDone || (hideTasksDone && !task.done)) &&
+            ((!hideNonRequiredTasks ||
+                (hideNonRequiredTasks && task.required)) &&
+                (!hideTasksDone || (hideTasksDone && !task.done)) &&
                 task.displayText
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase())) ||

@@ -1,6 +1,6 @@
 import React from 'react'
-import MainScreen from './screens/Main.screen'
 import './root'
+import MainScreen from './screens/Main.screen'
 // import MasterListScreen from './screens/MasterList.screen'
 // import {parseItems} from './utils/item'
 

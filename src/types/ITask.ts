@@ -15,7 +15,14 @@ export interface ITask {
 export interface IVisibleTask {
     displayText: string
     done: boolean
+    required: boolean
     visible: boolean
     setVisible: (visible: boolean) => void
     subTasks: IVisibleTask[]
+}
+
+export interface IRequiredTask {
+    required: boolean
+    done: boolean
+    subTasks: IRequiredTask[]
 }

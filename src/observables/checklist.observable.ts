@@ -5,6 +5,7 @@ import {setAndCountVisibleTasks} from '../utils/task'
 export class ChecklistObservable {
     searchTerm: string = ''
     showCompletedTasks: boolean = true
+    showNonRequiredTasks: boolean = true
 
     constructor(private rootStore: RootStore) {
         makeAutoObservable(this, {
@@ -22,6 +23,7 @@ export class ChecklistObservable {
             this.allTasks,
             this.searchTerm,
             !this.showCompletedTasks,
+            !this.showNonRequiredTasks,
         )
 
         return this.allTasks.filter(task => task.visible)
@@ -37,5 +39,9 @@ export class ChecklistObservable {
 
     toggleShowCompletedTasks() {
         this.showCompletedTasks = !this.showCompletedTasks
+    }
+
+    toggleShowNonRequiredTasks() {
+        this.showNonRequiredTasks = !this.showNonRequiredTasks
     }
 }

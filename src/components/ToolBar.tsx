@@ -17,6 +17,12 @@ const ToolBar = observer(() => {
                     checklistObservable.toggleShowCompletedTasks()
                 }
             />
+            <EmojiButton
+                onClick={() =>
+                    checklistObservable.toggleShowNonRequiredTasks()
+                }>
+                {checklistObservable.showNonRequiredTasks ? '⭕' : '✳️'}
+            </EmojiButton>
         </ToolBarContainer>
     )
 })
@@ -31,4 +37,12 @@ const ToolBarContainer = styled.div`
     margin-block: 1rem;
     padding-inline: 1rem;
     gap: 1rem;
+`
+
+const EmojiButton = styled.button`
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 `

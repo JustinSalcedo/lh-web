@@ -138,6 +138,10 @@ export default class Task implements ITask {
         return this.subTasks.filter(task => task.visible)
     }
 
+    get required() {
+        return this.mandatory || !!this.parentTask?.mandatory
+    }
+
     setVisible(visible: boolean) {
         this.visible = visible
     }
