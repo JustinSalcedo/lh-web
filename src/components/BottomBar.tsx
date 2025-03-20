@@ -23,14 +23,20 @@ const BottomBar = observer(() => {
                     </StyledTextLarge>
                     <StyledEmoji>🪙</StyledEmoji>
                 </Row>
-                <StyledTextLarge>x</StyledTextLarge>
-                <Row>
-                    <StyledTextLarge>
-                        {bottomBarObservable.multiplier}
-                    </StyledTextLarge>
-                    <StyledEmoji>🔥</StyledEmoji>
-                </Row>
-                <StyledTextLarge>=</StyledTextLarge>
+                {bottomBarObservable.isProcessed ? (
+                    <StyledTextLarge>|</StyledTextLarge>
+                ) : (
+                    <>
+                        <StyledTextLarge>x</StyledTextLarge>
+                        <Row>
+                            <StyledTextLarge>
+                                {bottomBarObservable.multiplier}
+                            </StyledTextLarge>
+                            <StyledEmoji>🔥</StyledEmoji>
+                        </Row>
+                        <StyledTextLarge>=</StyledTextLarge>
+                    </>
+                )}
                 <StyledTextLarge>${bottomBarObservable.reward}</StyledTextLarge>
             </ScoreCounterContainer>
             <BalanceDeadlineContainer>

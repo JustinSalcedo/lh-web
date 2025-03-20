@@ -11,6 +11,9 @@ export class ChecklistObservable {
         makeAutoObservable(this, {
             allTasks: computed,
             visibleTasks: computed,
+            loading: computed,
+            isActive: computed,
+            isProcessed: computed,
         })
     }
 
@@ -31,6 +34,22 @@ export class ChecklistObservable {
 
     get loading() {
         return !this.rootStore.checklistStore.synced
+    }
+
+    get isActive() {
+        return (
+            this.rootStore.checklistStore.todaysChecklist &&
+            (this.rootStore.checklistStore.todaysChecklist.endTimeInMs >
+                Date.now() ||
+                this.rootStore.checklistStore.todaysChecklist.processed)
+        )
+    }
+
+    get isProcessed() {
+        return (
+            !this.loading &&
+            !!this.rootStore.checklistStore.todaysChecklist?.processed
+        )
     }
 
     setSearchTerm(term: string) {

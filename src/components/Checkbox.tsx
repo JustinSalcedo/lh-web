@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-// Checkbox component
+// Checkbox component includes disabled style
 const Checkbox = styled.input.attrs({type: 'checkbox'})`
     appearance: none;
     width: 1.5rem;
@@ -27,6 +27,27 @@ const Checkbox = styled.input.attrs({type: 'checkbox'})`
     &:focus {
         outline: none;
         box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+    }
+
+    &:disabled {
+        background-color: #ccc;
+        border-color: #ccc;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &:disabled:checked {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    &:disabled:checked::before {
+        content: '✓';
+        display: block;
+        color: white;
+        font-size: 1.2rem;
+        line-height: 1.25rem;
+        text-align: center;
     }
 `
 

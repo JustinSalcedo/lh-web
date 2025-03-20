@@ -9,6 +9,7 @@ const ChecklistView = observer(() => {
     return (
         <ChecklistViewContainer>
             <div>
+                {checklistObservable.isProcessed && <h3>Lista procesada.</h3>}
                 {checklistObservable.loading ? (
                     <b>Cargando tareas...</b>
                 ) : (

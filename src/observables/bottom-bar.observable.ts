@@ -4,12 +4,17 @@ import {RootStore} from '../root.store'
 export class BottomBarObservable {
     constructor(private rootStore: RootStore) {
         makeAutoObservable(this, {
+            isProcessed: computed,
             score: computed,
             multiplier: computed,
             reward: computed,
             balance: computed,
             deadlineTime: computed,
         })
+    }
+
+    get isProcessed() {
+        return !!this.rootStore.checklistStore.todaysChecklist?.processed
     }
 
     get score() {
@@ -23,6 +28,8 @@ export class BottomBarObservable {
     }
 
     get reward() {
+        if (this.isProcessed)
+            return this.rootStore.checklistStore.todaysChecklist?.reward || 0
         return this.score * this.multiplier
     }
 

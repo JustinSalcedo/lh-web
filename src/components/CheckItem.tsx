@@ -8,15 +8,15 @@ import useChecklistObservable from '../hooks/useChecklistObservable'
 
 // CheckItem component
 const CheckItem = observer(({task}: {task: Task}) => {
-    const checklistObserver = useChecklistObservable()
+    const checklistObservable = useChecklistObservable()
     const [collapsed, setCollapsed] = useState(true)
 
     // set collapsed to false if there is a search term and task is visible
     useEffect(() => {
-        if (checklistObserver.searchTerm && task.visible) {
+        if (checklistObservable.searchTerm && task.visible) {
             setCollapsed(false)
         } else setCollapsed(true)
-    }, [checklistObserver.searchTerm, task.visible])
+    }, [checklistObservable.searchTerm, task.visible])
 
     return (
         <>
@@ -40,6 +40,7 @@ const CheckItem = observer(({task}: {task: Task}) => {
                         <Checkbox
                             checked={task.done}
                             onChange={() => task.checkTask()}
+                            disabled={!checklistObservable.isActive}
                         />
                     )}
                     {(task.mandatory || !!task.parentTask?.mandatory) && (
