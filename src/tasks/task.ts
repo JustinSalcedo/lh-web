@@ -168,7 +168,9 @@ export default class Task implements ITask {
         if (this.reps) {
             this.repsDone = (this.repsDone || 0) + 1
             if (this.repsDone > this.reps) this.repsDone = 0
-            this.done = this.repsDone === this.reps
+            this.done = this.required
+                ? this.repsDone === this.reps
+                : this.repsDone > 0
             return
         }
         this.done = !this.done
