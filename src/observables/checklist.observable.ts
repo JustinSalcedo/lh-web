@@ -6,11 +6,12 @@ export class ChecklistObservable {
     searchTerm: string = ''
     showCompletedTasks: boolean = true
     showNonRequiredTasks: boolean = true
-    isActive: boolean = false
-    checkIsActiveInterval: NodeJS.Timer | number = 0
+    isActive: boolean = true
+    checkIsActiveIntervalId: NodeJS.Timer | number = 0
 
     constructor(private rootStore: RootStore) {
         makeAutoObservable(this, {
+            checkIsActiveIntervalId: false,
             allTasks: computed,
             visibleTasks: computed,
             loading: computed,
@@ -21,14 +22,14 @@ export class ChecklistObservable {
     }
 
     runCheckIsActiveInterval() {
-        this.checkIsActiveInterval = setInterval(() => {
+        this.checkIsActiveIntervalId = setInterval(() => {
             runInAction(() => {
+                if (!this.rootStore.checklistStore.todaysChecklist) return
                 this.isActive =
-                    !!this.rootStore.checklistStore.todaysChecklist &&
                     this.rootStore.checklistStore.todaysChecklist.endTimeInMs >
-                        Date.now()
+                    Date.now()
                 if (!this.isActive) {
-                    clearInterval(this.checkIsActiveInterval)
+                    clearInterval(this.checkIsActiveIntervalId)
                 }
             })
         }, 1000)

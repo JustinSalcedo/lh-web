@@ -1,4 +1,10 @@
-import {computed, IReactionDisposer, makeAutoObservable, reaction} from 'mobx'
+import {
+    computed,
+    IReactionDisposer,
+    makeAutoObservable,
+    reaction,
+    runInAction,
+} from 'mobx'
 import {ExpandedFormat} from '../types'
 import {ITask} from '../types/ITask'
 import TaskApi from './tasks.api'
@@ -35,6 +41,7 @@ export default class Task implements ITask {
 
     subTasksDoneReactionDisposer: IReactionDisposer | null = null
     checkTaskReactionDisposer: IReactionDisposer | null = null
+    syncTaskTimeoutId: NodeJS.Timer | number = 0
 
     constructor({
         _id,
@@ -50,6 +57,9 @@ export default class Task implements ITask {
         api,
     }: TaskConstructorDto) {
         makeAutoObservable(this, {
+            syncTaskTimeoutId: false,
+            subTasksDoneReactionDisposer: false,
+            checkTaskReactionDisposer: false,
             allSubtasksDone: computed,
             aggregatedScore: computed,
             displayText: computed,
@@ -89,13 +99,16 @@ export default class Task implements ITask {
         this.checkTaskReactionDisposer = reaction(
             () => ({done: this.done, repsDone: this.repsDone}),
             ({done, repsDone}) => {
-                this.api
-                    .checkTask({
-                        id: this.id,
-                        done,
-                        repsDone,
-                    })
-                    .catch(e => console.error(e))
+                clearTimeout(this.syncTaskTimeoutId)
+                runInAction(() => {
+                    this.syncTaskTimeoutId = setTimeout(() => {
+                        this.api.checkTask({
+                            id: this.id,
+                            done,
+                            repsDone,
+                        })
+                    }, 1000)
+                })
             },
         )
     }
