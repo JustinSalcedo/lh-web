@@ -3,6 +3,7 @@ import SearchBar from './SearchBar'
 import Toggle from './Toggle'
 import {observer} from 'mobx-react-lite'
 import useChecklistObservable from '../hooks/useChecklistObservable'
+import {EmojiButton} from './commons'
 
 // ToolBar component includes SearchBar
 const ToolBar = observer(() => {
@@ -37,12 +38,4 @@ const ToolBarContainer = styled.div`
     margin-block: 1rem;
     padding-inline: 1rem;
     gap: 1rem;
-`
-
-const EmojiButton = styled.button`
-    font-size: 1.5rem;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
 `

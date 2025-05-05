@@ -39,6 +39,10 @@ export const StyledLabelSmall = styled.p`
     text-align: center;
 `
 
+export const StyledLabelXSmall = styled(StyledLabelSmall)`
+    font-size: 0.75em;
+`
+
 export const StyledEmoji = styled.p`
     font-size: 1rem;
     color: white;
@@ -53,4 +57,12 @@ export const StyledEmojiLarge = styled.p`
     margin: 0;
     padding: 0;
     text-align: center;
+`
+
+export const EmojiButton = styled.button`
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 `

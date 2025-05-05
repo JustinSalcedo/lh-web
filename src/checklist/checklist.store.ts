@@ -11,7 +11,7 @@ export default class ChecklistStore {
 
     synced = false
 
-    constructor(private rootStore: RootStore) {
+    constructor() {
         makeAutoObservable(this)
         this.api = new ChecklistApi()
     }

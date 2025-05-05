@@ -1,20 +1,28 @@
 import styled from 'styled-components'
 import BottomBar from '../components/BottomBar'
-import TopBar from '../components/TopBar'
-import ToolBar from '../components/ToolBar'
-import ChecklistView from '../components/ChecklistView'
+import useViewsObservable from '../hooks/useViewsObservable'
+import ChecklistView from '../views/Checklist.view'
+import TransactionsView from '../views/Transactions.view'
+import {observer} from 'mobx-react-lite'
+import AddTransaction from '../views/AddTransaction.view'
 
 // MainScreen component
-const MainScreen = () => {
+const MainScreen = observer(() => {
+    const viewsObservable = useViewsObservable()
+
     return (
         <Container>
-            <TopBar />
-            <ToolBar />
-            <ChecklistView />
+            {viewsObservable.currentView === 'checklist' && <ChecklistView />}
+            {viewsObservable.currentView === 'transactions' && (
+                <TransactionsView />
+            )}
+            {viewsObservable.currentView === 'add-transaction' && (
+                <AddTransaction />
+            )}
             <BottomBar />
         </Container>
     )
-}
+})
 
 export default MainScreen
 

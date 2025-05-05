@@ -3,11 +3,11 @@ import CheckItem from './CheckItem'
 import {observer} from 'mobx-react-lite'
 import useChecklistObservable from '../hooks/useChecklistObservable'
 
-const ChecklistView = observer(() => {
+const ChecklistBoard = observer(() => {
     const checklistObservable = useChecklistObservable()
 
     return (
-        <ChecklistViewContainer>
+        <ChecklistBoardContainer>
             <div>
                 {checklistObservable.isProcessed && <h3>Lista procesada.</h3>}
                 {checklistObservable.loading ? (
@@ -18,22 +18,17 @@ const ChecklistView = observer(() => {
                     ))
                 )}
             </div>
-        </ChecklistViewContainer>
+        </ChecklistBoardContainer>
     )
 })
 
-export default ChecklistView
+export default ChecklistBoard
 
-const ChecklistViewContainer = styled.div`
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
+const ChecklistBoardContainer = styled.div`
     padding: 1rem;
     display: block;
     height: 100%;
     overflow-y: scroll;
-    /* flex: 1; */
     width: 100%;
     background-color: #181818;
     border-radius: 10px;

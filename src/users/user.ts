@@ -60,4 +60,12 @@ export default class User implements IUser {
     get currentChecklist(): Checklist | undefined {
         return this.checklistStore.todaysChecklist ?? undefined
     }
+
+    setBalance(balance: number) {
+        this.balance = balance
+    }
+
+    addToBalance(amount: number) {
+        this.balance += amount
+    }
 }
